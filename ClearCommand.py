@@ -4,14 +4,14 @@
 import discord
 from discord.ext import commands
 
-# Replace 'YOUR_BOT_TOKEN' with your actual bot token
+# erm u have to like put ur token here?
 TOKEN = 'YOUR_BOT_TOKEN'
 
 intents = discord.Intents.default()
-intents.messages = True  # Enable message-related events
-intents.message_content = True  # Enable privileged message content intent
+intents.messages = True
+intents.message_content = True
 
-# Change the prfix the bot uses! (!clear #)
+#prefix settings (i have it set to !)
 bot = commands.Bot(command_prefix='!', intents=intents)
 
 
@@ -22,9 +22,8 @@ async def on_ready():
 
 @bot.command()
 async def clear(ctx, amount: int):
-    # Check if the user has the necessary permissions (manage_messages)
     if ctx.author.guild_permissions.manage_messages:
-        # Delete the requested number of messages (up to 100 at a time)
+        # ghe part that deletes the messages (up to 100 at a time due to api limitations)
         await ctx.channel.purge(limit=amount + 1)
         await ctx.send(f'Successfully cleared {amount} messages.')
     else:
